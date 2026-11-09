@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevTech Academy - Gerenciamento de Alunos</title>
+</head>
+<body>
+    <h1>DevTech Academy</h1>
+    <h2>Gerenciamento de Alunos</h2>
+
+    <h3>Cadastro de Alunos</h3>
+
+    <form id="formAluno">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" required>
+        <br><br>
+
+        <label for="idade">Idade:</label>
+        <input type="number" id="idade" min="1" required>
+        <br><br>
+
+        <label for="curso">Curso:</label>
+        <select id="curso" required>
+            <option value="JavaScript">JavaScript</option>
+            <option value="Python">Python</option>
+            <option value="Java">Java</option>
+        </select>
+        <br><br>
+
+        <label for="notaFinal">Nota Final:</label>
+        <input type="number" id="notaFinal" min="0" max="10" step="0.1" required>
+        <br><br>
+
+        <button type="submit" id="botaoSalvar">Cadastrar</button>
+        <button type="button" id="botaoCancelar" hidden>Cancelar edição</button>
+    </form>
+
+    <p id="mensagem" aria-live="polite"></p>
+
+    <h3>Lista de Alunos</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Idade</th>
+                <th>Curso</th>
+                <th>Nota Final</th>
+                <th>Situação</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="tabelaAlunos"></tbody>
+    </table>
+
+    <h3>Relatórios</h3>
+    <button type="button" id="btnAprovados">Listar aprovados</button>
+    <button type="button" id="btnMediaNotas">Média das notas</button>
+    <button type="button" id="btnMediaIdades">Média das idades</button>
+    <button type="button" id="btnOrdemAlfabetica">Nomes em ordem alfabética</button>
+    <button type="button" id="btnQuantidadeCursos">Quantidade por curso</button>
+    <button type="button" id="btnTodos">Mostrar todos</button>
+
+    <h4>Resultado do relatório</h4>
+    <div id="resultadoRelatorio" aria-live="polite">
+        <p>Selecione um relatório para visualizar os resultados.</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
