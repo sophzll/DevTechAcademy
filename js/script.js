@@ -92,6 +92,7 @@ function listarAlunos() {
 
         const botaoEditar = document.createElement("button");
         botaoEditar.textContent = "Editar";
+        botaoEditar.classList.add("btn", "btn-sm", "btn-outline-roxo");
 
         // EXERCÍCIO 3: função anônima no evento de clique.
         botaoEditar.addEventListener("click", function () {
@@ -100,6 +101,7 @@ function listarAlunos() {
 
         const botaoExcluir = document.createElement("button");
         botaoExcluir.textContent = "Excluir";
+        botaoExcluir.classList.add("btn", "btn-sm", "btn-outline-danger");
 
         // EXERCÍCIO 3: função anônima no evento de clique.
         botaoExcluir.addEventListener("click", function () {

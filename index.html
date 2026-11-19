@@ -1,72 +1,232 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>DevTech Academy - Gerenciamento de Alunos</title>
+
+    <!--adição do Bootstrap 5.3.9-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--personalização-->
+    <style>
+        body {
+            background-color: #F8F7FA;
+        }
+
+        h1 {
+            color: #6F42C1;
+            font-weight: 700;
+        }
+
+        h2, h3, h4 {
+            color: #3F3155;
+        }
+
+        .btn-roxo {
+            background-color: #6F42C1;
+            color: white;
+            border-color: #6F42C1;
+        }
+
+        .btn-roxo:hover {
+            background-color: #59339D;
+            color: white;
+            border-color: #59339D;
+        }
+
+        .btn-outline-roxo {
+            color: #6F42C1;
+            border-color: #6F42C1;
+        }
+
+        .btn-outline-roxo:hover {
+            background-color: #6F42C1;
+            color: white;
+        }
+
+        .titulo-secao {
+            border-bottom: 2px solid #E5DDF2;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+
+        .table thead th {
+            background-color: #6F42C1;
+            color: white;
+        }
+        .card-relatorios {
+            border: 1px solid #E5DDF2;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .card-relatorios .card-header {
+            background-color: #EDE7F6;
+            color: #3F3155;
+            border-bottom: 1px solid #E5DDF2;
+        }
+
+        footer {
+            background-color: #6F42C1;
+            color: white;
+            border-top: 3px solid #59339D;
+        }
+    </style>
+
 </head>
-<body>
-    <h1>DevTech Academy</h1>
-    <h2>Gerenciamento de Alunos</h2>
 
-    <h3>Cadastro de Alunos</h3>
+<body class="d-flex flex-column min-vh-100">
 
-    <form id="formAluno">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" required>
-        <br><br>
+    <main class="container py-4 flex-grow-1">
 
-        <label for="idade">Idade:</label>
-        <input type="number" id="idade" min="1" required>
-        <br><br>
+        <!--cabeçalho-->
+        <header class="mb-4">
+            <h1>DevTech Academy</h1>
+            <h2 class="h4">Gerenciamento de Alunos</h2>
+        </header>
 
-        <label for="curso">Curso:</label>
-        <select id="curso" required>
-            <option value="">Selecione o curso</option>
-            <option value="JavaScript">JavaScript</option>
-            <option value="Python">Python</option>
-            <option value="Java">Java</option>
-        </select>
-        <br><br>
+        <!--cadastro de alunos-->
+        <section class="mb-5">
+            <h3 class="titulo-secao">Cadastro de Alunos</h3>
 
-        <label for="notaFinal">Nota Final:</label>
-        <input type="number" id="notaFinal" min="0" max="10" step="0.1" required>
-        <br><br>
+            <form id="formAluno">
+                <div class="row g-3">
 
-        <button type="submit" id="botaoSalvar">Cadastrar</button>
-        <button type="button" id="botaoCancelar" hidden>Cancelar edição</button>
-    </form>
+                    <div class="col-md-6">
+                        <label for="nome" class="form-label">Nome:</label>
+                        <input type="text" id="nome" class="form-control" required>
+                    </div>
 
-    <p id="mensagem" aria-live="polite"></p>
+                    <div class="col-md-6">
+                        <label for="idade" class="form-label">Idade:</label>
+                        <input type="number" id="idade" class="form-control" min="1" required>
+                    </div>
 
-    <h3>Lista de Alunos</h3>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Idade</th>
-                <th>Curso</th>
-                <th>Nota Final</th>
-                <th>Situação</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody id="tabelaAlunos"></tbody>
-    </table>
+                    <div class="col-md-6">
+                        <label for="curso" class="form-label">Curso:</label>
+                        <select id="curso" class="form-select" required>
+                            <option value="">Selecione o curso</option>
+                            <option value="JavaScript">JavaScript</option>
+                            <option value="Python">Python</option>
+                            <option value="Java">Java</option>
+                        </select>
+                    </div>
 
-    <h3>Relatórios</h3>
-    <button type="button" id="btnAprovados">Listar aprovados</button>
-    <button type="button" id="btnMediaNotas">Média das notas</button>
-    <button type="button" id="btnMediaIdades">Média das idades</button>
-    <button type="button" id="btnOrdemAlfabetica">Nomes em ordem alfabética</button>
-    <button type="button" id="btnQuantidadeCursos">Quantidade por curso</button>
-    <button type="button" id="btnTodos">Mostrar todos</button>
+                    <div class="col-md-6">
+                        <label for="notaFinal" class="form-label">Nota Final:</label>
+                        <input type="number" id="notaFinal" class="form-control"
+                            min="0" max="10" step="0.1" required>
+                    </div>
 
-    <h4>Resultado do relatório</h4>
-    <div id="resultadoRelatorio" aria-live="polite">
-        <p>Selecione um relatório para visualizar os resultados.</p>
-    </div>
+                    <div class="col-12">
+                        <button type="submit" id="botaoSalvar" class="btn btn-roxo">
+                            Cadastrar
+                        </button>
 
-    <script src="script.js"></script>
+                        <button type="button" id="botaoCancelar"
+                            class="btn btn-outline-secondary" hidden>
+                            Cancelar edição
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+
+            <p id="mensagem" class="mt-3" aria-live="polite"></p>
+        </section>
+
+        <!--lista dos alunos-->
+        <section class="mb-5">
+            <h3 class="titulo-secao">Lista de Alunos</h3>
+
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered align-middle bg-white">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Idade</th>
+                            <th>Curso</th>
+                            <th>Nota Final</th>
+                            <th>Situação</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tabelaAlunos"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- relatórios -->
+        <section class="mb-4">
+
+            <div class="card card-relatorios shadow-sm">
+
+                <div class="card-header py-3">
+                    <h3 class="h5 mb-0">Relatórios</h3>
+                </div>
+
+                <div class="card-body">
+
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+
+                        <button type="button" id="btnAprovados" class="btn btn-roxo">
+                            Listar aprovados
+                        </button>
+
+                        <button type="button" id="btnMediaNotas" class="btn btn-outline-roxo">
+                            Média das notas
+                        </button>
+
+                        <button type="button" id="btnMediaIdades" class="btn btn-outline-roxo">
+                            Média das idades
+                        </button>
+
+                        <button type="button" id="btnOrdemAlfabetica" class="btn btn-outline-roxo">
+                            Nomes em ordem alfabética
+                        </button>
+
+                        <button type="button" id="btnQuantidadeCursos" class="btn btn-outline-roxo">
+                            Quantidade por curso
+                        </button>
+
+                        <button type="button" id="btnTodos" class="btn btn-outline-secondary">
+                            Mostrar todos
+                        </button>
+
+                    </div>
+
+                    <hr>
+
+                    <h4 class="h6 mt-3">Resultado do relatório</h4>
+
+                    <div id="resultadoRelatorio" class="bg-white border rounded p-3" aria-live="polite">
+                        <p class="mb-0">Selecione um relatório para visualizar os resultados.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <!--rodapé-->
+    <footer class="py-3 mt-4">
+        <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <p class="mb-0 fw-semibold">
+            Sophia Ellen Silva Canêdo
+            </p>
+            <p class="mb-0">
+                Gerenciador de Alunos
+            </p>
+
+        </div>
+    </footer>
+    
+
+    <!-- scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+
 </body>
 </html>
